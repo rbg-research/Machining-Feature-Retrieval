@@ -16,8 +16,9 @@ The paper is submitted to 9th International Conference on Frontiers of Intellige
 
 ## 3D CAD Models
 The Dataset used for feature retrieval is adopted from the synthetic dataset generated for [FeatureNet](https://github.com/zibozzb/FeatureNet).  It consists of 24 commonly found machining features in the manufacturing industry (e.g., O-ring, Rectangular passage). Each of the 24 classes has 1000 3D CAD models of varying dimensions and orientations in STL format.
-![Featurenet Dataset](Images/dataset.jpg)
-| *source: https://github.com/zibozzb/FeatureNet* |
+
+![Featurenet Dataset](images/dataset.jpg)
+*source: https://github.com/zibozzb/FeatureNet* 
 
 
 ## Feature extraction with Inductive Transfer Learning 
@@ -28,9 +29,9 @@ Dimensional. The features were projected to three
 dimensions with t-Distributed Stochastic Neighbor Embedding(t-SNE) for
 visualization purposes.
 
-![Extracted Features](Images/features.png)
+![Extracted Features](images/features.png)
+*[a] Extracted feature vectors of a through hole projected to 3D space and laid over the model. [b] Extracted features of a multi-feature 3d model*
 
-|*[a] Extracted feature vectors of a through hole projected to 3D space and laid over the model. [b] Extracted features of a multi-feature 3d model*|
 
 ## Machining Feature Retrieval with Frobenius norm and Spatial Pyramid Pooling
 
@@ -38,23 +39,24 @@ The extracted feature vectors should be able to capture the geometrical elements
 features needed to be compared with a similarity measure, Frobenius norm ([Notebook 1](Benchmarking_featurenet.ipynb)). To better find the similarity between feature matrices
 of different shapes, a deep neural network with a Spatial pyramid pooling(SPP) layer has been used later. ([Notebook 2](Machining_feature_retrieval.ipynb))
 
+![Workflow](images/workflow.png)
+*: The proposed method for feature extraction and retrieval*
+
+
 ## Results
-The inclusion of SPP layer improved the performance of feature retrieval.The
-testing accuracy obtained from the current model was 86% and the top-5 accuracy was 95 % for 30 epochs. 
+The inclusion of SPP layer improved the performance of feature retrieval. The
+testing accuracy obtained from the model was 86% and the top-5 accuracy was 95%  at the time of publication. With the current model, the accuracy is 92.8 and top-5 acuuracy is 98.5 for 30 epochs.
 
-
-*  Families of sample files chosen for testing and the top 2 similar families retrieved from database -
+*  Families of sample files chosen for testing and the top 2 similar families retrieved from database
 
 | Family of Test file|Family 1 | Family 2    |
 |----------|------------|--------------|
-|O-ring | Circular end pocket | Blind hole |
 |Rectangular passage | Rectangular pocket | Rectangular blind step|
 |Triangular pocket  | Triangular passage | rectangular blind step |
 |6 Sides passage |  6 Sides pocket | Circular blind step|
+|Circular end pocket |Circular end pocket  |  O-ring|
 
-
-
-* Top-5 models retrieved for a sample 3D model of 'circular end blind spot' (ID: 1990) -
+* Top-5 models retrieved for a sample 3D model of 'circular end blind spot' (ID: 1990)
 
 |No.|Model ID|Family|Euclidean Distance|
 |----------|------------|-----------------------|-----------------------|
@@ -64,13 +66,13 @@ testing accuracy obtained from the current model was 86% and the top-5 accuracy 
 |4 | 1853  | Circular end blind spot | 8.89|
 |5 | 1726  | Circular end blind spot | 8.94|
 
+
 ## CAD file visualization
 The test file and the top retrieved
 CAD model are rendered using the viewscad library. We can observe that the test features and retrieved features even though from the same family are different in dimensions but the network could still capture the similarity between them.
-![Retrieved Files](Images/Visual.jpg)
 
-|*[a] Test file from the family circular end blind slot. [b] Result no.1 - ID: 1620, Family: Circular end blind slot [c] Result no.2 - ID: 1230, Family: Circular end blind slot*|
-
+![Retrieved Files](images/Visual.jpg)
+*[a] Test file from the family circular end blind slot. [b] Result no.1 - ID: 1620, Family: Circular end blind slot [c] Result no.2 - ID: 1230, Family: Circular end blind slot*
 
 
 ## Requirements

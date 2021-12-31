@@ -11,6 +11,7 @@ joblib
 scikit-learn
 gdown
 openmesh
+unrar
 tensorflow-gpu==2.2.0 # We recommend this lower version if you have a 10.2 cuda toolkit
 
 #The folowing two are for viusalization in juyter and is optional
