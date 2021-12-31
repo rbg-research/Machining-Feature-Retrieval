@@ -1,0 +1,18 @@
+numpy
+torch #If not already installed
+scipy
+matplotlib
+open3d
+tensorboardX
+MinkowskiEngine #If not already installed
+future-fstrings
+easydict
+joblib
+scikit-learn
+gdown
+openmesh
+tensorflow-gpu==2.2.0 # We recommend this lower version if you have a 10.2 cuda toolkit
+
+#The folowing two are for viusalization in juyter and is optional
+solid
+viewscad
