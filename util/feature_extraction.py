@@ -6,22 +6,14 @@ from numpy import linalg as LA
 import openmesh as om
 import MinkowskiEngine as ME
 
-# def down_sample(pcd):
-#     down_sample = int(len(pcd.points)/500)
-#     if down_sample == 0.0:
-#         down_sample = 1
-#     pcd = pcd.uniform_down_sample(every_k_points=down_sample)
-#     return pcd
 
-
+#In case we have to use lare CAD files like in ModelNet 
 def down_sample(pcd):
     if(len(pcd.points)>10000):
         pcd = pcd.voxel_down_sample(voxel_size=0.5)
     elif(len(pcd.points)>1000):
         pcd = pcd.voxel_down_sample(voxel_size=0.05)
     return pcd
-
-
 
 
 def get_features(ply_file, model, device):
@@ -32,7 +24,6 @@ def get_features(ply_file, model, device):
     
     try:
          if(len(pcd.points)>0):
-                #pcd = pcd.voxel_down_sample(voxel_size=0.1)
                 pcd = down_sample(pcd)
     except MemoryError :
         print("cannot downsample file:/t",ply_file) 
@@ -43,28 +34,6 @@ def get_features(ply_file, model, device):
         print("cannot extract features of:/t",ply_file) 
     
     return temp, feature
-
-# def get_pcd(ply_file):
-#     pcd = o3d.io.read_point_cloud(ply_file)
-#     len_pcd = len(pcd.points)
-#     return  pcd,len_pcd
-
-# def get_features(pcd, model, device):
-    
-#     try:
-#          if(len(pcd.points)>0):
-#                 pcd = pcd.voxel_down_sample(voxel_size=0.05)
-#     except MemoryError :
-#         print("cannot downsample file:/t",ply_file) 
-        
-#     try:
-#          temp, feature = extract_features(model, xyz=np.array(pcd.points), voxel_size=0.3, device=device, skip_check=True)
-#     except MemoryError :
-#         print("cannot extract features of:/t",ply_file) 
-    
-#     feat =feature.detach().cpu().numpy()
-    
-#     return feat
 
 
 def stl2ply_convert(stl_folder,ply_folder):
