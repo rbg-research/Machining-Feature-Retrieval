@@ -11,7 +11,7 @@ neural network with a spatial pyramid pooling layer and the performance
 of the feature retrieval increased significantly. It was evident from the results that the model could effectively capture the geometrical elements from machining features.
 
 The paper is submitted to 9th International Conference on Frontiers of Intelligent Computing: Theory and Applications (FICTA 2021)
-: [Preprint](https://node1.chrischoy.org/data/publications/fcgf/fcgf.pdf)
+: [Preprint](https://arxiv.org/abs/2108.11838)
 
 
 ## 3D CAD Models
@@ -37,10 +37,10 @@ visualization purposes.
 
 The extracted feature vectors should be able to capture the geometrical elements of the machining features. To validate this, the extracted
 features needed to be compared with a similarity measure, Frobenius norm ([Notebook 1](Benchmarking_featurenet.ipynb)). To better find the similarity between feature matrices
-of different shapes, a deep neural network with a Spatial pyramid pooling(SPP) layer has been used later. ([Notebook 2](Machining_feature_retrieval.ipynb))
+of different shapes, a deep neural network with a Spatial pyramid pooling(SPP) layer has been used later ([Notebook 2](Machining_feature_retrieval.ipynb)).
 
 ![Workflow](images/workflow.png)
-*: The proposed method for feature extraction and retrieval*
+*The proposed method for feature extraction and retrieval*
 
 
 ## Results
@@ -49,12 +49,12 @@ testing accuracy obtained from the model was 86% and the top-5 accuracy was 95% 
 
 *  Families of sample files chosen for testing and the top 2 similar families retrieved from database
 
-| Family of Test file|Family 1 | Family 2    |
+| Family of Test file|Similar Family 1|Similar Family 2 |
 |----------|------------|--------------|
 |Rectangular passage | Rectangular pocket | Rectangular blind step|
 |Triangular pocket  | Triangular passage | rectangular blind step |
 |6 Sides passage |  6 Sides pocket | Circular blind step|
-|Circular end pocket |Circular end pocket  |  O-ring|
+|O-ring | Circular end pocket| Blind Hole
 
 * Top-5 models retrieved for a sample 3D model of 'circular end blind spot' (ID: 1990)
 
@@ -117,6 +117,7 @@ rm -r data/dataset.rar
 
 You can download the pre-trained model for feature extraction by running the following command.
 ```sh
-gdown https://drive.google.com/uc?id=1JuKffwi3qi1FhyQQB9rTbuxwGy7wfaPQ -O Data
+gdown https://drive.google.com/uc?id=1JuKffwi3qi1FhyQQB9rTbuxwGy7wfaPQ -O model/pretrained/model_32.pth
+
 ```
 
